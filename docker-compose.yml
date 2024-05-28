@@ -1,0 +1,196 @@
+---
+version: '3.7'
+services:
+
+  mysql-playlist:
+    container_name: playlists-mysql
+
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: spotify
+      MYSQL_USER: yahya
+      MYSQL_PASSWORD: Wydad3719
+    ports:
+      - "3366:3306"
+    volumes:
+      - ./data/mysql_playlists:/var/lib/mysql
+
+  mysql-keycloak:
+    container_name: keycloak-mysql
+    image: mysql:5.7
+    volumes:
+      - ./data/mysql_keycloak:/var/lib/mysql
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+
+  mongodb:
+    container_name: mongodb
+    image: mongo:4.4.14-rc0-focal
+    restart: always
+    ports:
+      - "27017:27017"
+    expose:
+      - "27017"
+    volumes:
+      - ./mongo-data:/data/db
+
+
+
+  keycloak:
+    container_name: keycloak
+    image: quay.io/keycloak/keycloak:18.0.0
+    command: ["start-dev", "--http-port=8180"]
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: mysql
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_ADMIN: yahya
+      KEYCLOAK_ADMIN_PASSWORD: Wydad3719
+    ports:
+      - "8180:8180"
+    expose:
+      - "8180"
+    volumes:
+      - ./realms/:/opt/keycloak/data/import/
+    depends_on:
+      - mysql-keycloak
+
+
+  discovery-server:
+    image: yahyadocker666/discovery-server:latest
+    container_name: discovery-server
+    pull_policy: always
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+
+
+  api-gateway:
+    image: yahyadocker666/api-gateway:latest
+    container_name: api-gateway
+    pull_policy: always
+    ports:
+      - "9090:9090"
+    expose:
+      - "9090"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - discovery-server
+      - keycloak
+
+  authentication-service:
+    image: yahyadocker666/authentication-service:latest
+    container_name: authentication-service
+    pull_policy: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - keycloak
+      - discovery-server
+      - api-gateway
+
+  registering-service:
+    image: yahyadocker666/registering-service:latest
+    container_name: registering-service
+    pull_policy: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - keycloak
+      - discovery-server
+      - api-gateway
+      - upload-service
+
+  search-service:
+    image: yahyadocker666/search-service:latest
+    container_name: search-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - discovery-server
+      - api-gateway
+      - authentication-service
+      - mongodb
+    volumes:
+      - images-datacenter:/images-datacenter
+
+  metrics-service:
+    image: yahyadocker666/mertrics-service:latest
+    container_name: metrics-service
+    environment:
+        - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+        - discovery-server
+        - api-gateway
+        - authentication-service
+        - mongodb
+
+  playlists-service:
+    image: yahyadocker666/playlists-service:latest
+    container_name: playlists-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - discovery-server
+      - api-gateway
+      - authentication-service
+      - mysql-playlist
+      - search-service
+
+  streaming-service:
+    image: yahyadocker666/streaming-service:latest
+    container_name: streaming-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - discovery-server
+      - api-gateway
+      - authentication-service
+      - search-service
+    volumes:
+      - audios-datacenter:/audios-datacenter
+
+  upload-service:
+    image: yahyadocker666/upload-song-service:latest
+    container_name: upload-song-service
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - discovery-server
+      - api-gateway
+      - authentication-service
+      - search-service
+    volumes:
+      - images-datacenter:/images-datacenter
+      - audios-datacenter:/audios-datacenter
+
+volumes:
+  images-datacenter:
+  audios-datacenter:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

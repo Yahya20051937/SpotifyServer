@@ -1,0 +1,16 @@
+org\example\model\User.class
+org\example\config\KeycloakConfig.class
+org\example\service\RegistrationService.class
+org\example\model\Role.class
+org\example\dto\PlaylistRequest.class
+org\example\dto\Credentials.class
+org\example\controller\RegistrationController.class
+org\example\config\WebClientConfig.class
+org\example\dto\AuthenticationRequestBody.class
+org\example\dto\ClientCredentials.class
+org\example\dto\Response.class
+org\example\dto\UserRequest.class
+org\example\RegisteringServiceApplication.class
+org\example\dto\SingerRequestBody.class
+org\example\model\JWT.class
+org\example\dto\RegistrationRequestBody.class

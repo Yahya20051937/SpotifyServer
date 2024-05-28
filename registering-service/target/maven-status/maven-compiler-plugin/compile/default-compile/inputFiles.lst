@@ -1,0 +1,16 @@
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\controller\RegistrationController.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\service\RegistrationService.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\dto\UserRequest.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\config\KeycloakConfig.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\RegisteringServiceApplication.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\dto\RegistrationRequestBody.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\dto\Credentials.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\dto\PlaylistRequest.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\dto\AuthenticationRequestBody.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\dto\Response.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\dto\SingerRequestBody.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\model\JWT.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\config\WebClientConfig.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\dto\ClientCredentials.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\model\Role.java
+C:\Spotify\SpotifyServer\registering-service\src\main\java\org\example\model\User.java

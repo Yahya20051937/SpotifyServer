@@ -1,0 +1,17 @@
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\repository\SongRepository.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\model\SpotifyObject.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\SearchServiceApplication.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\config\JwtConfig.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\model\Identifier.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\filter\UserClaimsFilter.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\controller\SearchController.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\model\JWT.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\config\SecurityConfig.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\service\SearchService.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\service\UserService.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\document\Song.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\repository\SingerRepository.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\document\Singer.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\config\WebClientConfig.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\model\SearchObject.java
+C:\Spotify\SpotifyServer\search-service\src\main\java\org\example\model\User.java
